@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function (){
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
 
     // Authentication Routes...
     $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -31,5 +31,7 @@ Route::group(['prefix' => 'admin'], function (){
     $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+    Route::get('/home', 'HomeController@index')->name('home');
 
 });
